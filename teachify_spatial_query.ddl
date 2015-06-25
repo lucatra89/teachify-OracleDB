@@ -10,4 +10,9 @@ ORDER BY distance;
 
 
 -- Retreive Lat Long
-select t.user_id , p.x as latitude, p.y as longitude from tutors t , table(sdo_util.getvertices(t.tutor_geo_location)) p;
+SELECT t.user_id , p.x AS latitude, p.y AS longitude FROM tutors t , table(sdo_util.getvertices(t.tutor_geo_location)) p;
+
+
+UPDATE tutors 
+	SET TUTOR_GEO_LOCATION = SDO_GEOMETRY(2001, 8307, SDO_POINT_TYPE (41.89334,12.48307,NULL), NULL, NULL)
+	WHERE USER_ID=1;
